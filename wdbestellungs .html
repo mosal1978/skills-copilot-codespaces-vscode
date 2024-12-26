@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WheelDrive Reparatur Bestellformular</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #005b9e;
+            --secondary-color: #f2f5f9;
+            --highlight-color: #28a745;
+            --button-hover-color: #004080;
+            --text-color: #333;
+            --alert-bg-color: #f8d7da;
+            --alert-border-color: #f5c6cb;
+            --alert-text-color: #721c24;
+            --selected-checkbox-bg: #cfe9ff;
+            --selected-checkbox-border: #005b9e;
+            --focus-color: #82b1ff;
+            --button-shadow-color: rgba(0, 75, 135, 0.3);
+            --input-border-color: #ccc;
+            --checkbox-shadow-color: rgba(0, 91, 158, 0.25);
+            --checkbox-hover-bg: #e8f0fe;
+            --luxury-bg: linear-gradient(to right, #f7f7f7, #e0e0e0);
+            --luxury-text: #4a4a4a;
+            --luxury-border: #bcbcbc;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 95%;
+            margin: 0 auto;
+            padding: 40px;
+            background-color: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px;
+            font-size: 1.1em;
+            border-radius: 12px;
+            border: 1px solid var(--input-border-color);
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border: 2px solid var(--focus-color);
+            box-shadow: 0 0 10px var(--focus-color);
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 15px;
+            border: 2px solid var(--input-border-color);
+            cursor: pointer;
+            transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            user-select: none;
+        }
+
+        .checkbox-group input {
+            display: none;
+        }
+
+        .checkbox-group label::before {
+            content: "";
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--primary-color);
+            border-radius: 6px;
+            margin-right: 15px;
+            transition: background-color 0.3s, border-color 0.3s, transform 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+        }
+
+        .checkbox-group input:checked + label::before {
+            background-color: var(--highlight-color);
+            border-color: var(--highlight-color);
+            transform: scale(1.1);
+        }
+
+        .checkbox-group label:hover {
+            background-color: var(--checkbox-hover-bg);
+            border-color: var(--primary-color);
+            box-shadow: 0 6px 20px var(--checkbox-shadow-color);
+        }
+
+        .checkbox-group input:checked + label {
+            background-color: var(--selected-checkbox-bg);
+            border-color: var(--selected-checkbox-border);
+            box-shadow: 0 0 15px var(--button-shadow-color);
+        }
+
+        .copy-button-part {
+            background-color: var(--highlight-color);
+            color: #ffffff;
+            padding: 5px 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            border: none;
+            margin-left: 10px;
+            font-size: 0.9em;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 15px;
+            align-items: center;
+        }
+
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            padding: 15px 35px;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        button:hover {
+            background-color: var(--button-hover-color);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .summary {
+            margin-top: 40px;
+            background: var(--luxury-bg);
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
+            font-family: 'Poppins', sans-serif;
+            color: var(--luxury-text);
+            border: 1px solid var(--luxury-border);
+        }
+
+        .summary h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .summary div {
+            font-size: 1.2em;
+            line-height: 1.7;
+            color: var(--luxury-text);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                max-width: 100%;
+            }
+
+            .button-group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+
+        /* Druckstil für den Reparaturbericht */
+        @media print {
+            body {
+                background-color: #fff;
+                color: #000;
+            }
+            .container {
+                box-shadow: none;
+                border: none;
+                padding: 0;
+                max-width: 100%;
+            }
+            .summary {
+                background: #fff;
+                box-shadow: none;
+                padding: 20px;
+                font-family: 'Poppins', sans-serif;
+                color: #333;
+                border: 1px solid #ccc;
+            }
+            h1, h2 {
+                color: #000;
+            }
+            .button-group,
+            .form-group,
+            .hint,
+            textarea,
+            input,
+            button {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>WheelDrive Reparatur Bestellformular</h1>
+
+        <!-- Kopftext/Hinweis -->
+        <div class="form-group">
+            <label for="notice-text">Hinweis/Bemerkung:</label>
+            <textarea id="notice-text" name="notice-text" rows="3" placeholder="Hinweis..."></textarea>
+            <p class="hint">Z.B. „Teile entsprechen nicht unseren AGBs“ oder „Sonderwünsche beachten“.</p>
+        </div>
+
+        <!-- Formularstart -->
+        <form id="repair-order-form">
+            <!-- Kundeninformationen -->
+            <div class="form-group">
+                <label for="customer-name">Kundenname:</label>
+                <input type="text" id="customer-name" name="customer-name" required placeholder="Kundenname">
+            </div>
+
+            <div class="form-group">
+                <label for="rma-number">RMA-Nr.:</label>
+                <input type="text" id="rma-number" name="rma-number" required placeholder="RMA-Nummer">
+            </div>
+
+            <div class="form-group">
+                <label for="serial-number">Seriennummer (optional):</label>
+                <input type="text" id="serial-number" name="serial-number" placeholder="Seriennummer">
+            </div>
+
+            <!-- Teileauswahl -->
+            <div class="form-group">
+                <label>Teile zur Bestellung auswählen:</label>
+                <div class="checkbox-group">
+                    <div>
+                        <input type="checkbox" id="part-9007691" name="parts" value="9007691">
+                        <label for="part-9007691">Anti Tip arm right [9007691]</label>
+                        <button type="button" class="copy-button-part" onclick="copyPartNumber('9007691')">Artikelnummer kopieren</button>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="part-9007963" name="parts" value="9007963">
+                        <label for="part-9007963">Anti Tip arm left [9007963]</label>
+                        <button type="button" class="copy-button-part" onclick="copyPartNumber('9007963')">Artikelnummer kopieren</button>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="part-1020852" name="parts" value="1020852">
+                        <label for="part-1020852">Modifikationskit [1020852]</label>
+                        <button type="button" class="copy-button-part" onclick="copyPartNumber('1020852')">Artikelnummer kopieren</button>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="part-1020851" name="parts" value="1020851">
+                        <label for="part-1020851">Wiper [1020851]</label>
+                        <button type="button" class="copy-button-part" onclick="copyPartNumber('1020851')">Artikelnummer kopieren</button>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="part-1019488" name="parts" value="1019488">
+                        <label for="part-1019488">Kleiner Greifring [1019488]</label>
+                        <button type="button" class="copy-button-part" onclick="copyPartNumber('1019488')">Artikelnummer kopieren</button>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="part-1019495" name="parts" value="1019495">
+                        <label for="part-1019495">Großer Greifring [1019495]</label>
+                        <button type="button" class="copy-button-part" onclick="copyPartNumber('1019495')">Artikelnummer kopieren</button>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="part-1018676" name="parts" value="1018676">
+                        <label for="part-1018676">Sensor foil [1018676]</label>
+                        <button type="button" class="copy-button-part" onclick="copyPartNumber('1018676')">Artikelnummer kopieren</button>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="part-1018679" name="parts" value="1018679">
+                        <label for="part-1018679">Battery Contacts (4pcs) [1018679]</label>
+                        <button type="button" class="copy-button-part" onclick="copyPartNumber('1018679')">Artikelnummer kopieren</button>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="part-1020824" name="parts" value="1020824">
+                        <label for="part-1020824">Battery pack [1020824]</label>
+                        <button type="button" class="copy-button-part" onclick="copyPartNumber('1020824')">Artikelnummer kopieren</button>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="part-1019578" name="parts" value="1019578">
+                        <label for="part-1019578">User Interface [1019578]</label>
+                        <button type="button" class="copy-button-part" onclick="copyPartNumber('1019578')">Artikelnummer kopieren</button>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="part-1020856" name="parts" value="1020856">
+                        <label for="part-1020856">Feder und Anhänger [1020856]</label>
+                        <button type="button" class="copy-button-part" onclick="copyPartNumber('1020856')">Artikelnummer kopieren</button>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="part-000283036" name="parts" value="000283036">
+                        <label for="part-000283036">Marathon Plus [000283036]</label>
+                        <button type="button" class="copy-button-part" onclick="copyPartNumber('000283036')">Artikelnummer kopieren</button>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="part-9007959" name="parts" value="9007959">
+                        <label for="part-9007959">Sicherheitsrad (2 Stück) [9007959]</label>
+                        <button type="button" class="copy-button-part" onclick="copyPartNumber('9007959')">Artikelnummer kopieren</button>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="part-1019487" name="parts" value="1019487">
+                        <label for="part-1019487">Abdeckung Sensorbox [1019487]</label>
+                        <button type="button" class="copy-button-part" onclick="copyPartNumber('1019487')">Artikelnummer kopieren</button>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="part-1018674" name="parts" value="1018674">
+                        <label for="part-1018674">Gehäuse kpl. [1018674]</label>
+                        <button type="button" class="copy-button-part" onclick="copyPartNumber('1018674')">Artikelnummer kopieren</button>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="part-9007938" name="parts" value="9007938">
+                        <label for="part-9007938">Ladeanschlussabdeckung [9007938]</label>
+                        <button type="button" class="copy-button-part" onclick="copyPartNumber('9007938')">Artikelnummer kopieren</button>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="part-1019496" name="parts" value="1019496">
+                        <label for="part-1019496">Sensorbox [1019496]</label>
+                        <button type="button" class="copy-button-part" onclick="copyPartNumber('1019496')">Artikelnummer kopieren</button>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="part-9007947" name="parts" value="9007947">
+                        <label for="part-9007947">Ladegerät [9007947]</label>
+                        <button type="button" class="copy-button-part" onclick="copyPartNumber('9007947')">Artikelnummer kopieren</button>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="part-1019489" name="parts" value="1019489">
+                        <label for="part-1019489">Battery pack Quickie [1019489]</label>
+                        <button type="button" class="copy-button-part" onclick="copyPartNumber('1019489')">Artikelnummer kopieren</button>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="part-9012379" name="parts" value="9012379">
+                        <label for="part-9012379">Montageset 12 mm [9012379]</label>
+                        <button type="button" class="copy-button-part" onclick="copyPartNumber('9012379')">Artikelnummer kopieren</button>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="part-9012378" name="parts" value="9012378">
+                        <label for="part-9012378">Montageset 127 mm [9012378]</label>
+                        <button type="button" class="copy-button-part" onclick="copyPartNumber('9012378')">Artikelnummer kopieren</button>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="part-AA_Batterien" name="parts" value="AA_Batterien">
+                        <label for="part-AA_Batterien">AA Batterien Stk. [AA_Batterien]</label>
+                        <button type="button" class="copy-button-part" onclick="copyPartNumber('AA_Batterien')">Artikelnummer kopieren</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Manuelle Artikel hinzufügen -->
+            <div class="form-group">
+                <h2>Exotische Artikel hinzufügen:</h2>
+                <label for="custom-part-number">Artikelnummer:</label>
+                <input type="text" id="custom-part-number" placeholder="Artikelnummer">
+                <label for="custom-part-name">Bezeichnung:</label>
+                <input type="text" id="custom-part-name" placeholder="Bezeichnung">
+                <label for="custom-part-quantity">Menge:</label>
+                <input type="number" id="custom-part-quantity" min="1" step="1" placeholder="Menge">
+                <button type="button" onclick="addCustomPart()">Artikel hinzufügen</button>
+            </div>
+
+            <ul id="custom-parts-list"></ul> <!-- Liste der benutzerdefinierten Artikel -->
+
+            <!-- Bestelltyp -->
+            <div class="form-group">
+                <label>Bestelltyp:</label>
+                <div class="radio-group">
+                    <label><input type="radio" id="kv" name="order-type" value="KV" required> Kostenvoranschlag (KV)</label>
+                    <label><input type="radio" id="garantie" name="order-type" value="Garantie" required> Garantie</label>
+                    <label><input type="radio" id="halb-halb" name="order-type" value="Halb-Halb" required> Halb Garantie / Halb Kosten</label>
+                </div>
+            </div>
+
+            <!-- Arbeitszeit -->
+            <div class="form-group">
+                <label for="work-hours">Arbeitszeit gesamt (in Stunden):</label>
+                <input type="number" id="work-hours" name="work-hours" min="0" step="0.1" placeholder="Arbeitszeit">
+            </div>
+
+            <div class="form-group">
+                <label for="work-hours-kv">Arbeitszeit KV (in Stunden):</label>
+                <input type="number" id="work-hours-kv" name="work-hours-kv" min="0" step="0.1" placeholder="Arbeitszeit KV">
+            </div>
+
+            <div class="form-group">
+                <label for="work-hours-garantie">Arbeitszeit Garantie (in Stunden):</label>
+                <input type="number" id="work-hours-garantie" name="work-hours-garantie" min="0" step="0.1" placeholder="Arbeitszeit Garantie">
+            </div>
+
+            <!-- Aktionsbuttons -->
+            <div class="button-group">
+                <button type="button" onclick="saveToLocal()">Lokal speichern</button>
+                <button type="button" onclick="loadFromLocal()">Gespeicherte Daten laden</button>
+                <button type="button" onclick="sendEmail()">Per E-Mail senden</button>
+                <button type="button" onclick="generateFile()">CSV herunterladen</button>
+                <button type="button" onclick="showSummary()">Zusammenfassung anzeigen</button>
+                <button type="button" onclick="window.print()">Reparaturbericht drucken</button>
+            </div>
+        </form>
+
+        <!-- Zusammenfassung -->
+        <div id="summary" class="summary" style="display:none;">
+            <h2>Zusammenfassung der Bestellung</h2>
+            <div id="summary-content"></div>
+        </div>
+    </div>
+
+    <script>
+        let customParts = [];
+
+        // Artikel manuell hinzufügen
+        function addCustomPart() {
+            const partNumber = document.getElementById('custom-part-number').value;
+            const partName = document.getElementById('custom-part-name').value;
+            const partQuantity = document.getElementById('custom-part-quantity').value;
+
+            if (!partNumber || !partName || !partQuantity) {
+                alert("Bitte füllen Sie alle Felder aus, um einen Artikel hinzuzufügen.");
+                return;
+            }
+
+            // Artikel zur Liste hinzufügen
+            customParts.push({
+                partNumber,
+                partName,
+                partQuantity
+            });
+
+            // Manuelle Artikel anzeigen
+            const list = document.getElementById('custom-parts-list');
+            const listItem = document.createElement('li');
+            listItem.innerHTML = `${partQuantity}x ${partName} [${partNumber}] <button type="button" class="copy-button-part" onclick="copyPartNumber('${partNumber}')">Artikelnummer kopieren</button>`;
+            list.appendChild(listItem);
+
+            // Felder leeren
+            document.getElementById('custom-part-number').value = '';
+            document.getElementById('custom-part-name').value = '';
+            document.getElementById('custom-part-quantity').value = '';
+        }
+
+        // Artikelnummer kopieren
+        function copyPartNumber(partNumber) {
+            navigator.clipboard.writeText(partNumber).then(() => {
+                alert('Artikelnummer wurde kopiert!');
+            }, () => {
+                alert('Fehler beim Kopieren der Artikelnummer.');
+            });
+        }
+
+        // Lokale Speicherung der Formulardaten
+        function saveToLocal() {
+            const customerName = document.getElementById('customer-name').value;
+            const rmaNumber = document.getElementById('rma-number').value;
+            const serialNumber = document.getElementById('serial-number').value || "Keine Seriennummer angegeben";
+            const workHours = document.getElementById('work-hours').value || "Nicht angegeben";
+            const workHoursKV = document.getElementById('work-hours-kv').value || "Nicht angegeben";
+            const workHoursGarantie = document.getElementById('work-hours-garantie').value || "Nicht angegeben";
+            const orderType = document.querySelector('input[name="order-type"]:checked').nextSibling.textContent.trim();
+            const noticeText = document.getElementById('notice-text').value || "Keine Hinweise";
+
+            const selectedParts = Array.from(document.querySelectorAll('input[name="parts"]:checked'))
+                .map(checkbox => checkbox.parentElement.textContent.trim()).join(", ");
+
+            const formData = {
+                customerName,
+                rmaNumber,
+                serialNumber,
+                workHours,
+                workHoursKV,
+                workHoursGarantie,
+                orderType,
+                noticeText,
+                selectedParts,
+                customParts
+            };
+
+            localStorage.setItem('repairOrderData', JSON.stringify(formData));
+            alert('Daten wurden lokal gespeichert!');
+        }
+
+        // Laden der lokal gespeicherten Formulardaten
+        function loadFromLocal() {
+            const savedData = JSON.parse(localStorage.getItem('repairOrderData'));
+            if (savedData) {
+                document.getElementById('customer-name').value = savedData.customerName;
+                document.getElementById('rma-number').value = savedData.rmaNumber;
+                document.getElementById('serial-number').value = savedData.serialNumber;
+                document.getElementById('work-hours').value = savedData.workHours;
+                document.getElementById('work-hours-kv').value = savedData.workHoursKV;
+                document.getElementById('work-hours-garantie').value = savedData.workHoursGarantie;
+                document.getElementById('notice-text').value = savedData.noticeText;
+
+                document.querySelector(`input[name="order-type"][value="${savedData.orderType}"]`).checked = true;
+
+                const selectedParts = savedData.selectedParts.split(", ");
+                selectedParts.forEach(part => {
+                    const partCheckbox = document.querySelector(`label:contains("${part}") input[type="checkbox"]`);
+                    if (partCheckbox) partCheckbox.checked = true;
+                });
+
+                customParts = savedData.customParts;
+                const list = document.getElementById('custom-parts-list');
+                list.innerHTML = '';
+                customParts.forEach(part => {
+                    const listItem = document.createElement('li');
+                    listItem.innerHTML = `${part.partQuantity}x ${part.partName} [${part.partNumber}] <button type="button" class="copy-button-part" onclick="copyPartNumber('${part.partNumber}')">Artikelnummer kopieren</button>`;
+                    list.appendChild(listItem);
+                });
+
+                alert('Gespeicherte Daten wurden geladen!');
+            } else {
+                alert('Keine gespeicherten Daten gefunden!');
+            }
+        }
+
+        // Zusammenfassung anzeigen
+        function showSummary() {
+            const customerName = document.getElementById('customer-name').value;
+            const rmaNumber = document.getElementById('rma-number').value;
+            const serialNumber = document.getElementById('serial-number').value || "Keine Seriennummer angegeben";
+            const workHours = document.getElementById('work-hours').value;
+            const workHoursKV = document.getElementById('work-hours-kv').value;
+            const workHoursGarantie = document.getElementById('work-hours-garantie').value;
+            const orderType = document.querySelector('input[name="order-type"]:checked').nextSibling.textContent.trim();
+            const noticeText = document.getElementById('notice-text').value || "Keine Hinweise";
+            
+            const selectedParts = Array.from(document.querySelectorAll('input[name="parts"]:checked'))
+                .map(checkbox => checkbox.value);
+
+            let summaryHTML = `<strong>Kundenname:</strong> ${customerName}<br>
+                               <strong>RMA-Nr.:</strong> ${rmaNumber}<br>
+                               <strong>Seriennummer:</strong> ${serialNumber}<br>
+                               <strong>Bestelltyp:</strong> ${orderType}<br>
+                               <strong>Gesamtarbeitszeit:</strong> ${workHours} Stunden<br>
+                               <strong>Arbeitszeit KV:</strong> ${workHoursKV} Stunden<br>
+                               <strong>Arbeitszeit Garantie:</strong> ${workHoursGarantie} Stunden<br>
+                               <strong>Hinweise:</strong> ${noticeText}<br>
+                               <strong>Ausgewählte Teile:</strong><ul>`;
+
+            selectedParts.forEach(part => {
+                summaryHTML += `<li>${part} <button type="button" class="copy-button-part" onclick="copyPartNumber('${part}')">Artikelnummer kopieren</button></li>`;
+            });
+
+            // Benutzerdefinierte Teile hinzufügen
+            summaryHTML += `<strong>Exotische Artikel:</strong><ul>`;
+            customParts.forEach(part => {
+                summaryHTML += `<li>${part.partQuantity}x ${part.partName} [${part.partNumber}] <button type="button" class="copy-button-part" onclick="copyPartNumber('${part.partNumber}')">Artikelnummer kopieren</button></li>`;
+            });
+            summaryHTML += '</ul>';
+
+            document.getElementById('summary-content').innerHTML = summaryHTML;
+            document.getElementById('summary').style.display = 'block';
+        }
+
+        // CSV-Datei generieren
+        function generateFile() {
+            const customerName = document.getElementById('customer-name').value;
+            const rmaNumber = document.getElementById('rma-number').value;
+            const serialNumber = document.getElementById('serial-number').value || "Keine Seriennummer angegeben";
+            const workHours = document.getElementById('work-hours').value || "Nicht angegeben";
+            const workHoursKV = document.getElementById('work-hours-kv').value || "Nicht angegeben";
+            const workHoursGarantie = document.getElementById('work-hours-garantie').value || "Nicht angegeben";
+            const orderType = document.querySelector('input[name="order-type"]:checked').nextSibling.textContent.trim();
+            const noticeText = document.getElementById('notice-text').value || "Keine Hinweise";
+
+            const selectedParts = Array.from(document.querySelectorAll('input[name="parts"]:checked'))
+                .map(checkbox => checkbox.parentElement.textContent.trim()).join(", ");
+
+            let customPartsCSV = customParts.map(part => `${part.partNumber},${part.partName},${part.partQuantity}`).join("\n");
+
+            const csvContent = `Kundenname,RMA-Nummer,Seriennummer,Bestelltyp,Arbeitszeit,Arbeitszeit KV,Arbeitszeit Garantie,Hinweis,Teile\n` +
+                               `${customerName},${rmaNumber},${serialNumber},${orderType},${workHours},${workHoursKV},${workHoursGarantie},${noticeText},${selectedParts}\n\nExotische Artikel:\nArtikelnummer,Bezeichnung,Menge\n` +
+                               customPartsCSV;
+
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            
+            const downloadLink = document.getElementById('download-link') || document.createElement('a');
+            downloadLink.href = url;
+            downloadLink.setAttribute('download', `repair_order_${rmaNumber}.csv`);
+            downloadLink.style.display = 'none';
+            if (!document.getElementById('download-link')) {
+                downloadLink.id = 'download-link';
+                document.body.appendChild(downloadLink);
+            }
+            downloadLink.click();
+        }
+
+        // E-Mail mit Formulardaten senden
+        function sendEmail() {
+            const customerName = document.getElementById('customer-name').value;
+            const rmaNumber = document.getElementById('rma-number').value;
+            const serialNumber = document.getElementById('serial-number').value || "Keine Seriennummer angegeben";
+            const workHours = document.getElementById('work-hours').value || "Nicht angegeben";
+            const workHoursKV = document.getElementById('work-hours-kv').value || "Nicht angegeben";
+            const workHoursGarantie = document.getElementById('work-hours-garantie').value || "Nicht angegeben";
+            const orderType = document.querySelector('input[name="order-type"]:checked').nextSibling.textContent.trim();
+            const noticeText = document.getElementById('notice-text').value || "Keine Hinweise";
+
+            const selectedParts = Array.from(document.querySelectorAll('input[name="parts"]:checked'))
+                .map(checkbox => checkbox.parentElement.textContent.trim()).join(", ");
+
+            let customPartsEmail = customParts.map(part => `${part.partQuantity}x ${part.partName} [${part.partNumber}]`).join("\n");
+
+            const subject = `Bestellung für WheelDrive Reparatur - RMA: ${rmaNumber}`;
+            const body = `Kundenname: ${customerName}\n` +
+                         `RMA-Nummer: ${rmaNumber}\n` +
+                         `Seriennummer: ${serialNumber}\n` +
+                         `Bestelltyp: ${orderType}\n` +
+                         `Gesamtarbeitszeit: ${workHours} Stunden\n` +
+                         `Arbeitszeit KV: ${workHoursKV} Stunden\n` +
+                         `Arbeitszeit Garantie: ${workHoursGarantie} Stunden\n` +
+                         `Hinweise: ${noticeText}\n` +
+                         `Teile zur Bestellung: ${selectedParts}\n\n` +
+                         `Exotische Artikel:\n${customPartsEmail}`;
+
+            const mailtoLink = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            window.location.href = mailtoLink;
+        }
+
+        // Artikelnummern kopieren
+        function copySummary() {
+            const selectedParts = Array.from(document.querySelectorAll('input[name="parts"]:checked'))
+                .map(checkbox => checkbox.value).join("\n");
+
+            const customPartsNumbers = customParts.map(part => part.partNumber).join("\n");
+            const allParts = `${selectedParts}\n${customPartsNumbers}`;
+
+            navigator.clipboard.writeText(allParts).then(() => {
+                alert('Artikelnummern wurden kopiert!');
+            }, () => {
+                alert('Fehler beim Kopieren der Artikelnummern.');
+            });
+        }
+    </script>
+</body>
+</html>
